@@ -6,16 +6,19 @@
 package nezet;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
-import javax.swing.WindowConstants;
 
 /**
  *
@@ -348,6 +351,11 @@ public class Vezerlok extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Mentés");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
         jMenu1.add(jSeparator1);
 
@@ -532,18 +540,21 @@ public class Vezerlok extends javax.swing.JFrame {
         kilepes();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     public void kilepes() {
-        ImageIcon icon = new ImageIcon("src/nezet/kep.jpg");
+        ImageIcon icon = new ImageIcon("src/kepek/kep.jpg");
         int valasz = JOptionPane.showConfirmDialog(null, "Kilépéskor nem kerül semmi sem mentésre!\nBiztos folytatja?", "Kilépés", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
 
         if (valasz == JOptionPane.CANCEL_OPTION) {
             System.out.println("cancel");
-            //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-            setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         } else if (valasz == JOptionPane.OK_OPTION) {
             System.out.println("kilép");
             //setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            System.exit(0);
         }
     }
 
