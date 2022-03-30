@@ -253,6 +253,11 @@ public class Vezerlok extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Dinamikus tartalom"));
 
         chbHozzaFuz.setText("hozzáfűz");
+        chbHozzaFuz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbHozzaFuzActionPerformed(evt);
+            }
+        });
 
         btnListbe.setText("combo tartalmát Listbe");
         btnListbe.addActionListener(new java.awt.event.ActionListener() {
@@ -264,9 +269,11 @@ public class Vezerlok extends javax.swing.JFrame {
         buttonGroup3.add(rdbEleje);
         rdbEleje.setSelected(true);
         rdbEleje.setText("elejére");
+        rdbEleje.setEnabled(false);
 
         buttonGroup3.add(rdbVege);
         rdbVege.setText("végére");
+        rdbVege.setEnabled(false);
 
         jLabel3.setText("Új szak:");
 
@@ -448,17 +455,30 @@ public class Vezerlok extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         ButtonModel gombok = buttonGroup1.getSelection();
-        if (jTabbedPane1.getSelectedIndex() == 1 && gombok == null){
+        if (jTabbedPane1.getSelectedIndex() == 1 && gombok == null) {
             JOptionPane.showMessageDialog(this.rootPane, "Nincs nem kiválasztva!");
             jTabbedPane1.setSelectedIndex(0);
-        }else{
+        } else {
             String szoveg = "Kér hírlevelet";
-            if (!jCheckBox1.isSelected()){
+            if (!jCheckBox1.isSelected()) {
                 szoveg = "Nem kér hírlevelet";
             }
             jTextArea1.setText(szoveg);
         }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void chbHozzaFuzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbHozzaFuzActionPerformed
+        Enumeration<AbstractButton> buttons = buttonGroup3.getElements();
+        if (chbHozzaFuz.isSelected()) {
+            while (buttons.hasMoreElements()) {
+                buttons.nextElement().setEnabled(true);
+            }
+        }else{
+            while (buttons.hasMoreElements()) {
+                buttons.nextElement().setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_chbHozzaFuzActionPerformed
 
     /**
      * @param args the command line arguments
