@@ -6,12 +6,16 @@
 package nezet;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -85,6 +89,11 @@ public class Vezerlok extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vezérlők használata");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,6 +352,11 @@ public class Vezerlok extends javax.swing.JFrame {
         jMenu1.add(jSeparator1);
 
         jMenuItem3.setText("Kilépés");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -416,8 +430,7 @@ public class Vezerlok extends javax.swing.JFrame {
 
     private void btnCombobaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombobaActionPerformed
         String szoveg = txtujSzak.getText();
-
-        if (!txtujSzak.getText().equals("")) {
+        if (!szoveg.equals("")) {
             if (szoveg.charAt(0) != ' ') {
                 jComboBox1.addItem(txtujSzak.getText());
             } else {
@@ -499,7 +512,7 @@ public class Vezerlok extends javax.swing.JFrame {
     private void txtujSzakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtujSzakKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String szoveg = txtujSzak.getText();
-            if (!txtujSzak.getText().equals("")) {
+            if (!szoveg.equals("")) {
                 if (szoveg.charAt(0) != ' ') {
                     jComboBox1.addItem(txtujSzak.getText());
                 } else {
@@ -510,6 +523,29 @@ public class Vezerlok extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtujSzakKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        kilepes();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        kilepes();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    public void kilepes() {
+        ImageIcon icon = new ImageIcon("src/nezet/kep.jpg");
+        int valasz = JOptionPane.showConfirmDialog(null, "Kilépéskor nem kerül semmi sem mentésre!\nBiztos folytatja?", "Kilépés", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+
+        if (valasz == JOptionPane.CANCEL_OPTION) {
+            System.out.println("cancel");
+            //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        } else if (valasz == JOptionPane.OK_OPTION) {
+            System.out.println("kilép");
+            //setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        }
+    }
 
     /**
      * @param args the command line arguments
