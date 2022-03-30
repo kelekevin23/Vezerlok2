@@ -415,8 +415,14 @@ public class Vezerlok extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJelszotMutatActionPerformed
 
     private void btnCombobaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombobaActionPerformed
+        String szoveg = txtujSzak.getText();
+
         if (!txtujSzak.getText().equals("")) {
-            jComboBox1.addItem(txtujSzak.getText());
+            if (szoveg.charAt(0) != ' ') {
+                jComboBox1.addItem(txtujSzak.getText());
+            } else {
+                JOptionPane.showMessageDialog(this.rootPane, "Nem kezdődhet szóközzel!");
+            }
         } else {
             JOptionPane.showMessageDialog(this.rootPane, "Nem lehet üres a mező!");
         }
@@ -492,8 +498,13 @@ public class Vezerlok extends javax.swing.JFrame {
 
     private void txtujSzakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtujSzakKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String szoveg = txtujSzak.getText();
             if (!txtujSzak.getText().equals("")) {
-                jComboBox1.addItem(txtujSzak.getText());
+                if (szoveg.charAt(0) != ' ') {
+                    jComboBox1.addItem(txtujSzak.getText());
+                } else {
+                    JOptionPane.showMessageDialog(this.rootPane, "Nem kezdődhet szóközzel!");
+                }
             } else {
                 JOptionPane.showMessageDialog(this.rootPane, "Nem lehet üres a mező!");
             }
