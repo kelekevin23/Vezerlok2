@@ -5,6 +5,7 @@
  */
 package nezet;
 
+import java.awt.event.KeyEvent;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
@@ -278,6 +279,11 @@ public class Vezerlok extends javax.swing.JFrame {
         jLabel3.setText("Új szak:");
 
         txtujSzak.setText("jTextField1");
+        txtujSzak.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtujSzakKeyPressed(evt);
+            }
+        });
 
         btnComboba.setText("Felvesz");
         btnComboba.addActionListener(new java.awt.event.ActionListener() {
@@ -409,7 +415,11 @@ public class Vezerlok extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJelszotMutatActionPerformed
 
     private void btnCombobaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombobaActionPerformed
-        jComboBox1.addItem(txtujSzak.getText());
+        if (!txtujSzak.getText().equals("")) {
+            jComboBox1.addItem(txtujSzak.getText());
+        } else {
+            JOptionPane.showMessageDialog(this.rootPane, "Nem lehet üres a mező!");
+        }
     }//GEN-LAST:event_btnCombobaActionPerformed
 
     private void btnListbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListbeActionPerformed
@@ -473,12 +483,22 @@ public class Vezerlok extends javax.swing.JFrame {
             while (buttons.hasMoreElements()) {
                 buttons.nextElement().setEnabled(true);
             }
-        }else{
+        } else {
             while (buttons.hasMoreElements()) {
                 buttons.nextElement().setEnabled(false);
             }
         }
     }//GEN-LAST:event_chbHozzaFuzActionPerformed
+
+    private void txtujSzakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtujSzakKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!txtujSzak.getText().equals("")) {
+                jComboBox1.addItem(txtujSzak.getText());
+            } else {
+                JOptionPane.showMessageDialog(this.rootPane, "Nem lehet üres a mező!");
+            }
+        }
+    }//GEN-LAST:event_txtujSzakKeyPressed
 
     /**
      * @param args the command line arguments
