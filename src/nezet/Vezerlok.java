@@ -545,8 +545,8 @@ public class Vezerlok extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     public void kilepes() {
-        ImageIcon icon = new ImageIcon("src/kepek/kep.jpg");
-        int valasz = JOptionPane.showConfirmDialog(null, "Kilépéskor nem kerül semmi sem mentésre!\nBiztos folytatja?", "Kilépés", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/kepek/kep.jpg"));
+        int valasz = JOptionPane.showConfirmDialog(rootPane, "Kilépéskor nem kerül semmi sem mentésre!\nBiztos folytatja?", "Kilépés", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
 
         if (valasz == JOptionPane.CANCEL_OPTION) {
             System.out.println("cancel");
